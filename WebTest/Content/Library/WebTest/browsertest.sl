@@ -42,7 +42,7 @@ operation:
           id: '2'
           object_path: 'Browser("Google").Page("Google").WebEdit("Suche")'
           action: Set
-          default_args: '"RPA"'
+          default_args: ''
           snapshot: ".\\Snapshots\\ssf2.html"
           highlight_id: 'Browser("Google").Page("Google").WebEdit("Suche")'
           args: 'Parameter("search")'

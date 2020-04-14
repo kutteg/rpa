@@ -8,7 +8,11 @@ flow:
         do:
           io.cloudslang.base.strings.length:
             - origin_string: eins zwei drei vier
-            - stripUpToAndIncluding: "${origin_string.strip('zwei')}"
+            - separator: zwei
+            - stripUpTo: '${separator + origin_string.partition(separator)[2]}'
+            - stripUpToAndIncluding: '${origin_string.partition(separator)[2]}'
+            - stripAfter: '${origin_string.partition(separator)[0] + separator}'
+            - stripAfterAndIncluding: '${origin_string.partition(separator)[0]}'
         navigate:
           - SUCCESS: SUCCESS
   results:
@@ -17,14 +21,14 @@ extensions:
   graph:
     steps:
       length:
-        x: 244.02474975585938
-        'y': 182.02476501464844
+        x: 100
+        'y': 150
         navigate:
-          6a862e2e-94e2-e967-9c98-94bd243d2dea:
-            targetId: d8dfe7e9-b651-0cbc-d987-f4b10df2fdae
+          1698f67d-bff8-7f53-845f-241f5f881fb2:
+            targetId: 0ef869ee-b8ed-236b-dc2a-0582832c1354
             port: SUCCESS
     results:
       SUCCESS:
-        d8dfe7e9-b651-0cbc-d987-f4b10df2fdae:
-          x: 632.0247802734375
-          'y': 193.9158477783203
+        0ef869ee-b8ed-236b-dc2a-0582832c1354:
+          x: 400
+          'y': 150
