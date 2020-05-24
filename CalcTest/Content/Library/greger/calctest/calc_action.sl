@@ -1,10 +1,10 @@
-namespace: greger
+namespace: greger.calctest
 operation:
   name: calc_action
   inputs:
     - celsius
   sequential_action:
-    gav: 'com.microfocus.seq:greger.calc_action:1.0.0'
+    gav: 'com.microfocus.seq:greger.calctest.calc_action:1.0.0'
     skills:
       - Java
       - SAP
@@ -23,7 +23,7 @@ operation:
         ignore_existing_sessions: false
         remember_password: false
       windows:
-        active: true
+        active: false
         apps:
           app_1:
             args: ''
@@ -72,10 +72,6 @@ operation:
           object_path: 'Window("Calculator").WinMenu("Menu")'
           action: Select
           default_args: "\"View;Basic\tCtrl+F4\""
-      - step:
-          id: '8'
-          object_path: 'Window("Calculator")'
-          action: Close
   outputs:
     - fahrenheit:
         robot: true

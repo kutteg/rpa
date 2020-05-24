@@ -1,12 +1,12 @@
-namespace: greger
+namespace: greger.calctest
 flow:
   name: calc_flow
   inputs:
-    - input: '15'
+    - input: '20'
   workflow:
     - calc_action:
         do:
-          greger.calc_action:
+          greger.calctest.calc_action:
             - celsius: '${input}'
         navigate:
           - SUCCESS: SUCCESS
@@ -19,13 +19,13 @@ extensions:
   graph:
     steps:
       calc_action:
-        x: 124
-        'y': 148
+        x: 149
+        'y': 150
         navigate:
-          0a63bc48-6a1b-52d1-c15e-b69f5cd29242:
+          f149de03-9247-ca29-a3e2-209eeb7492b2:
             targetId: db73f396-793b-9d93-a08a-73df4176588b
             port: SUCCESS
-          8a756614-ad75-3866-bfe9-a69326e143b6:
+          c97f34ee-e248-8135-2e32-25260d6947c2:
             targetId: db73f396-793b-9d93-a08a-73df4176588b
             port: WARNING
     results:

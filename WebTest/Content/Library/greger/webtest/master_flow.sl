@@ -14,7 +14,7 @@ flow:
             - row_delimiter: ;
             - column_delimiter: '|'
         publish:
-          - suchtext: '${return_result}'
+          - suchtext: "${return_result.rstrip(';')}"
         navigate:
           - SUCCESS: web_flow
           - FAILURE: on_failure
