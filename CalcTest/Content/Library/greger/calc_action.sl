@@ -1,8 +1,10 @@
-namespace: oe_converter
+namespace: greger
 operation:
-  name: oe_converter
+  name: calc_action
+  inputs:
+    - celsius
   sequential_action:
-    gav: 'com.microfocus.seq:oe_converter.oe_converter:1.0.0'
+    gav: 'com.microfocus.seq:greger.calc_action:1.0.0'
     skills:
       - Java
       - SAP
@@ -25,7 +27,7 @@ operation:
         apps:
           app_1:
             args: ''
-            path: "C:\\windows\\system32\\win32calc.exe"
+            path: "C:\\Windows\\system32\\calc.exe"
             directory: ''
       terminal_settings:
         active: false
@@ -35,37 +37,45 @@ operation:
     steps:
       - step:
           id: '2'
+          object_path: 'Window("Calculator").WinMenu("Menu")'
+          action: Select
+          default_args: "\"View;Unit conversion\tCtrl+U\""
+      - step:
+          id: '3'
           object_path: 'Window("Calculator").WinComboBox("Select the type of unit")'
           action: Select
           default_args: '"Temperature"'
           snapshot: ".\\Snapshots\\ssf2.png"
-          highlight_id: '66768'
-      - step:
-          id: '3'
-          object_path: 'Window("Calculator").WinComboBox("From")'
-          action: Select
-          default_args: '"Degrees Celsius"'
-          snapshot: ".\\Snapshots\\ssf3.png"
-          highlight_id: '66776'
+          highlight_id: '2688112'
       - step:
           id: '4'
           object_path: 'Window("Calculator").WinComboBox("To")'
           action: Select
           default_args: '"Degrees Fahrenheit"'
-          snapshot: ".\\Snapshots\\ssf4.png"
-          highlight_id: '66784'
+          snapshot: ".\\Snapshots\\ssf3.png"
+          highlight_id: '2491960'
       - step:
           id: '5'
           object_path: 'Window("Calculator").WinEdit("From")'
           action: Set
-          default_args: '"30"'
-          snapshot: ".\\Snapshots\\ssf5.png"
-          highlight_id: '66774'
+          default_args: '"15"'
+          snapshot: ".\\Snapshots\\ssf4.png"
+          highlight_id: '3016190'
+          args: 'Parameter("celsius")'
       - step:
           id: '6'
           object_path: 'Window("Calculator").WinEdit("To")'
           action: Output
           default_args: 'CheckPoint("fahrenheit")'
+      - step:
+          id: '7'
+          object_path: 'Window("Calculator").WinMenu("Menu")'
+          action: Select
+          default_args: "\"View;Basic\tCtrl+F4\""
+      - step:
+          id: '8'
+          object_path: 'Window("Calculator")'
+          action: Close
   outputs:
     - fahrenheit:
         robot: true
@@ -82,6 +92,28 @@ object_repository:
         smart_identification: ''
         name: Calculator
         child_objects:
+          - object:
+              smart_identification: ''
+              name: Menu
+              child_objects: []
+              properties:
+                - property:
+                    value:
+                      value: '2'
+                      regular_expression: false
+                    name: menuobjtype
+                    hidden: false
+                    read_only: false
+                    type: NUMBER
+              comments: ''
+              custom_replay: ''
+              class: WinMenu
+              visual_relations: ''
+              last_update_time: 'Mittwoch, 20. Mai 2020 16:43:25'
+              basic_identification:
+                property_ref:
+                  - menuobjtype
+                ordinal_identifier: ''
           - object:
               smart_identification: ''
               name: To
@@ -111,7 +143,7 @@ object_repository:
                   type: STRING
               class: WinEdit
               visual_relations: ''
-              last_update_time: 'Tuesday, March 24, 2020 10:43:00 AM'
+              last_update_time: 'Mittwoch, 20. Mai 2020 16:43:25'
               basic_identification:
                 property_ref:
                   - nativeclass
@@ -146,7 +178,7 @@ object_repository:
                   type: STRING
               class: WinEdit
               visual_relations: ''
-              last_update_time: 'Tuesday, March 24, 2020 10:43:00 AM'
+              last_update_time: 'Mittwoch, 20. Mai 2020 16:43:25'
               basic_identification:
                 property_ref:
                   - nativeclass
@@ -181,7 +213,7 @@ object_repository:
                   type: STRING
               class: WinComboBox
               visual_relations: ''
-              last_update_time: 'Tuesday, March 24, 2020 10:43:00 AM'
+              last_update_time: 'Mittwoch, 20. Mai 2020 16:43:25'
               basic_identification:
                 property_ref:
                   - nativeclass
@@ -216,42 +248,7 @@ object_repository:
                   type: STRING
               class: WinComboBox
               visual_relations: ''
-              last_update_time: 'Tuesday, March 24, 2020 10:43:00 AM'
-              basic_identification:
-                property_ref:
-                  - nativeclass
-                  - attached text
-                ordinal_identifier: ''
-          - object:
-              smart_identification: ''
-              name: From
-              child_objects: []
-              properties:
-                - property:
-                    value:
-                      value: ComboBox
-                      regular_expression: false
-                    name: nativeclass
-                    hidden: false
-                    read_only: false
-                    type: STRING
-                - property:
-                    value:
-                      value: From
-                      regular_expression: false
-                    name: attached text
-                    hidden: false
-                    read_only: false
-                    type: STRING
-              comments: ''
-              custom_replay:
-                behavior:
-                  value: ComboBox
-                  name: simclass
-                  type: STRING
-              class: WinComboBox
-              visual_relations: ''
-              last_update_time: 'Tuesday, March 24, 2020 10:43:00 AM'
+              last_update_time: 'Mittwoch, 20. Mai 2020 16:43:25'
               basic_identification:
                 property_ref:
                   - nativeclass
@@ -298,7 +295,7 @@ object_repository:
             type: STRING
         class: Window
         visual_relations: ''
-        last_update_time: 'Tuesday, March 24, 2020 10:43:00 AM'
+        last_update_time: 'Mittwoch, 20. Mai 2020 16:43:25'
         basic_identification:
           property_ref:
             - regexpwndtitle

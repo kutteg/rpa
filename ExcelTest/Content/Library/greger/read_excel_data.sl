@@ -1,11 +1,11 @@
-namespace: kgtest
+namespace: greger
 flow:
-  name: Read_Excel_Data
+  name: read_excel_data
   workflow:
     - get_cell:
         do:
           io.cloudslang.base.excel.get_cell:
-            - excel_file_name: "C:\\temp\\OO.xlsx"
+            - excel_file_name: "C:\\RPAInput\\OO.xlsx"
             - worksheet_name: Comedian
             - has_header: 'yes'
             - first_row_index: '0'

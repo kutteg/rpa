@@ -1,4 +1,4 @@
-namespace: cstest
+namespace: greger
 flow:
   name: cstest_loop
   inputs:
