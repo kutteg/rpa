@@ -1,4 +1,4 @@
-namespace: greger
+namespace: greger.cstest
 operation:
   name: cstest_python_sha1
   inputs:

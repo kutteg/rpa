@@ -1,4 +1,4 @@
-namespace: greger
+namespace: greger.cstest
 flow:
   name: cstest
   inputs:

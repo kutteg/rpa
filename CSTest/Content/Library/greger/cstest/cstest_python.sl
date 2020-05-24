@@ -1,4 +1,4 @@
-namespace: greger
+namespace: greger.cstest
 flow:
   name: cstest_python
   inputs:
@@ -19,7 +19,7 @@ flow:
           - SUCCESS: cstest_python_operation
     - cstest_python_operation:
         do:
-          greger.cstest_python_operation:
+          greger.cstest.cstest_python_operation:
             - input_string: '${list}'
             - separator: zwei
         navigate:
@@ -33,10 +33,10 @@ extensions:
         x: 100
         'y': 150
       cstest_python_operation:
-        x: 362.0247497558594
-        'y': 137.02476501464844
+        x: 407.0247497558594
+        'y': 158.02476501464844
         navigate:
-          5087558c-1e35-35c9-cbea-d949dd0f5659:
+          5970e2fc-4717-79a3-1342-1e935a0208d3:
             targetId: 0ef869ee-b8ed-236b-dc2a-0582832c1354
             port: SUCCESS
     results:
