@@ -1,6 +1,6 @@
 namespace: greger.webtest
 flow:
-  name: master_flow
+  name: excel_web_flow
   workflow:
     - get_cell:
         do:

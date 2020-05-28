@@ -1,6 +1,6 @@
 namespace: greger.saptest
 flow:
-  name: master_flow
+  name: excel_sap_user_create_flow
   workflow:
     - get_cell:
         do:

@@ -1,6 +1,6 @@
 namespace: greger.calctest
 flow:
-  name: master_flow
+  name: excel_calc_flow
   workflow:
     - get_cell:
         do:

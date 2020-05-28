@@ -2,18 +2,20 @@ namespace: greger.mailtest
 flow:
   name: mail_flow
   workflow:
-    - get_email:
+    - send_mail:
         do:
-          io.cloudslang.microsoft.office365.get_email:
-            - tenant: 856b813c-16e5-49a5-85ec-6f081e13b527
-            - client_id: d9de640a-b508-41b1-9309-bc8e95ddb486
-            - client_secret:
-                value: 'RCHbYjo@x9C[gjH0i//7BEACjj0jF*SP'
+          io.cloudslang.base.mail.send_mail:
+            - hostname: mx.freenet.de
+            - port: '465'
+            - from: kur.greger@microfocus.com
+            - to: k.greger@freenet.de
+            - subject: mailtest mit RPA
+            - body: dies war ein RPA mail test
+            - username: k.greger
+            - password:
+                value: 4tanjaFT
                 sensitive: true
-            - email_address: kurt.greger@microfocus.com
-            - proxy_host: 'http://web-proxy.eu.softwaregrp.net'
-            - proxy_port: '8080'
-            - trust_all_roots: 'yes'
+            - enable_TLS: 'true'
         navigate:
           - SUCCESS: SUCCESS
           - FAILURE: on_failure
@@ -23,11 +25,11 @@ flow:
 extensions:
   graph:
     steps:
-      get_email:
-        x: 119.02476501464844
-        'y': 172.02476501464844
+      send_mail:
+        x: 135
+        'y': 181
         navigate:
-          6a07b4e2-80fe-7665-c746-4ea34e3a3c55:
+          135ab5b7-56ca-4621-f5d5-dc3c2b0fde94:
             targetId: 646f1834-978c-bc27-4bd1-32a92ceab2f1
             port: SUCCESS
     results:
