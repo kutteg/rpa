@@ -6,15 +6,22 @@
 namespace: greger.saptest
 flow:
   name: sap_user_create_flow
+  inputs:
+    - user: KGTEST
+    - password:
+        sensitive: true
+    - firstname: KG
+    - lastname: TEST
+    - email: kgtest@gmail.com
   workflow:
     - sap_user_create_action:
         do:
           greger.saptest.sap_user_create_action:
-            - user: KGTEST
-            - password: Cloud@123
-            - firstname: KG
-            - lastname: TEST
-            - email: kgtest@gmail.com
+            - user: '${user}'
+            - password: '${password}'
+            - firstname: '${firstname}'
+            - lastname: '${lastname}'
+            - email: '${email}'
         publish:
           - resultmessage
         navigate:

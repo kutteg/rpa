@@ -6,11 +6,13 @@
 namespace: greger.saptest
 flow:
   name: sap_user_delete_flow
+  inputs:
+    - user: KGTEST
   workflow:
     - sap_user_delete_action:
         do:
           greger.saptest.sap_user_delete_action:
-            - user: KGTEST
+            - user: '${user}'
         publish:
           - resultmessage
         navigate:
