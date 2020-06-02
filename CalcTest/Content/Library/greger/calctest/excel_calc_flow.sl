@@ -30,16 +30,16 @@ flow:
 extensions:
   graph:
     steps:
+      get_cell:
+        x: 121
+        'y': 217
       calc_flow:
-        x: 352
-        'y': 208
+        x: 355
+        'y': 210
         navigate:
           b7d258dd-d068-7a1a-f4c3-ef35a63122d3:
             targetId: 9ca141db-c642-9bdc-abab-12b124dd6c63
             port: SUCCESS
-      get_cell:
-        x: 121
-        'y': 217
     results:
       SUCCESS:
         9ca141db-c642-9bdc-abab-12b124dd6c63:

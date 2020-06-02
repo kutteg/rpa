@@ -7,7 +7,7 @@ flow:
           io.cloudslang.base.mail.send_mail:
             - hostname: mx.freenet.de
             - port: '465'
-            - from: kur.greger@microfocus.com
+            - from: kurt.greger@microfocus.com
             - to: k.greger@freenet.de
             - subject: mailtest mit RPA
             - body: dies war ein RPA mail test
@@ -15,7 +15,7 @@ flow:
             - password:
                 value: 4tanjaFT
                 sensitive: true
-            - enable_TLS: 'true'
+            - enable_TLS: 'false'
         navigate:
           - SUCCESS: SUCCESS
           - FAILURE: on_failure
@@ -35,5 +35,5 @@ extensions:
     results:
       SUCCESS:
         646f1834-978c-bc27-4bd1-32a92ceab2f1:
-          x: 465.0247497558594
-          'y': 170.9158477783203
+          x: 465
+          'y': 183

@@ -1,16 +1,16 @@
 namespace: greger.office365test
 flow:
-  name: office365_flow
+  name: office365_me_flow
   workflow:
     - get_email:
         do:
           io.cloudslang.microsoft.office365.get_email:
-            - tenant: ecbe5bba-4e3e-4d4d-adfe-6db3c470ab8a
+            - tenant: greger.onmicrosoft.com
             - client_id: d9de640a-b508-41b1-9309-bc8e95ddb486
             - client_secret:
                 value: 'RCHbYjo@x9C[gjH0i//7BEACjj0jF*SP'
                 sensitive: true
-            - email_address: kurt.greger@microfocus.com
+            - email_address: hcm@greger.onmicrosoft.com
             - proxy_host: web-proxy.eu.softwaregrp.net
             - proxy_port: '8080'
             - trust_all_roots: 'true'
