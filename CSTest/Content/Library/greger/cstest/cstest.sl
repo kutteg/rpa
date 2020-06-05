@@ -2,9 +2,18 @@ namespace: greger.cstest
 flow:
   name: cstest
   inputs:
-    - liste: eins zwei drei vier
+    - fuenf: '5'
+    - sechs: '6'
     - begrenzer: ' '
     - index: '1'
+    - json1: "${'{'+\\\n'    \"eins\": \"' +fuenf+ '\",'+\\\n'    \"zwei\": ' +sechs+ ','+\\\n'    \"drei\": \"' +fuenf+ '\"'+\\\n'}'}"
+    - json2: |-
+        {
+            "eins": "s",
+            "zwei": 2,
+            "drei": "3"
+        }
+    - liste: "${'eins zwei drei vier %s %s' % (fuenf, sechs)}"
   workflow:
     - get_by_index:
         do:

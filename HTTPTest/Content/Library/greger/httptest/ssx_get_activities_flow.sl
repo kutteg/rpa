@@ -60,13 +60,16 @@ extensions:
     steps:
       http_get_basic_auth:
         x: 75
-        'y': 77
+        'y': 80
       get_header_cookie:
         x: 252
         'y': 77
       validate_json:
         x: 444
         'y': 77
+      json_path_query_items:
+        x: 447
+        'y': 323
       json_path_query_name:
         x: 261
         'y': 324
@@ -74,9 +77,6 @@ extensions:
           7ca3406b-21e2-a339-8e8a-a053c6c0e054:
             targetId: a4cbb9a8-14df-7a01-6c81-7bbb69fefa49
             port: SUCCESS
-      json_path_query_items:
-        x: 447
-        'y': 323
     results:
       SUCCESS:
         a4cbb9a8-14df-7a01-6c81-7bbb69fefa49:

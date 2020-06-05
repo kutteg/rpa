@@ -1,6 +1,6 @@
 namespace: greger.exceltest
 flow:
-  name: read_excel_data
+  name: read_excel_data_flow
   workflow:
     - get_cell:
         do:

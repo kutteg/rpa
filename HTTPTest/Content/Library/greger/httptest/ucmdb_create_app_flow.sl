@@ -3,6 +3,9 @@ flow:
   name: ucmdb_create_app_flow
   inputs:
     - customer: '1'
+    - ucmdbservice: KGT1
+    - server1: kgs1
+    - server2: kgs2
   workflow:
     - ucmdb_get_token:
         do:
@@ -24,7 +27,7 @@ flow:
             - json_object: '${return_json}'
             - json_path: $.token
         publish:
-          - token: '${return_result}'
+          - token: "${return_result.rstrip('\"').lstrip('\"')}"
         navigate:
           - SUCCESS: ucmdb_create_app
           - FAILURE: on_failure
@@ -34,24 +37,24 @@ flow:
             - url: 'https://psvm91.bbntc.hpeswlab.net:22116/rest-api/dataModel'
             - trust_all_roots: 'true'
             - x_509_hostname_verifier: allow_all
-            - headers: "${'Authorization: Bearer '+token}"
+            - headers: "${'Authorization: Bearer %s' % token}"
             - body: |-
-                ${'{
+                {
                   "cis": [
                         {
                           "ucmdbId": "tmp4dc01bee04c76cc0ac4bb069f46e8b55",
                           "type": "business_application",
-                          "properties": {"name":"'+UCMDBSERVICE+'"}
+                          "properties": {"name":"KG1"}
                         },
                         {
                           "ucmdbId": "tmp4dc01bee04c76cc0ac4bb069f46e8b56",
                           "type": "node",
-                          "properties": {"name":"${SERVER1}"}
+                          "properties": {"name":"server1"}
                         },
                         {
                           "ucmdbId": "tmp4dc01bee04c76cc0ac4bb069f46e8b57",
                           "type": "node",
-                          "properties": {"name":"${SERVER2}"}
+                          "properties": {"name":"server2"}
                         }
                     ],
                     "relations": [
@@ -70,7 +73,7 @@ flow:
                           "end2Id":"tmp4dc01bee04c76cc0ac4bb069f46e8b57"
                         }
                     ]
-                }'}
+                }
             - content_type: application/json
         publish:
           - response_headers

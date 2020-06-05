@@ -2,17 +2,23 @@ namespace: greger.httptest
 flow:
   name: ssx_trigger_activitie_flow
   workflow:
-    - http_get_basic_auth:
+    - http_client_post:
         do:
-          io.cloudslang.base.http.http_client_get:
-            - url: 'https://rpa.hpeswlab.net:8446/oo-ssx/rest/v0/activities?filterRunStatus=FINISHED'
+          io.cloudslang.base.http.http_client_post:
+            - url: 'https://rpa.hpeswlab.net:8446/oo-ssx/rest/v0/activities'
             - auth_type: basic
             - username: greger
             - password:
                 value: Cloud@123
                 sensitive: true
             - trust_all_roots: 'true'
-            - x_509_hostname_verifier: allow_all
+            - body: |-
+                {
+                  "scenarioId": 2,
+                  "scenarioInputsValue": {},
+                  "triggerName": "Excel_Data_from_RPA"
+                }
+            - content_type: application/json
         publish:
           - response_headers
           - return_json: '${return_result}'
@@ -32,14 +38,6 @@ flow:
           io.cloudslang.base.json.validate_json:
             - json_input: '${return_json}'
         navigate:
-          - SUCCESS: json_path_query
-          - FAILURE: on_failure
-    - json_path_query:
-        do:
-          io.cloudslang.base.json.json_path_query:
-            - json_object: '${return_json}'
-            - json_path: $.items
-        navigate:
           - SUCCESS: SUCCESS
           - FAILURE: on_failure
   results:
@@ -48,24 +46,21 @@ flow:
 extensions:
   graph:
     steps:
-      http_get_basic_auth:
-        x: 75
-        'y': 77
+      http_client_post:
+        x: 60
+        'y': 81
       get_header_cookie:
         x: 252
         'y': 77
       validate_json:
         x: 444
         'y': 77
-      json_path_query:
-        x: 447
-        'y': 323
         navigate:
-          0b6edfcb-c6a1-475e-8439-b8b25e572cd0:
+          77a48b6b-0a00-fcb5-86c1-49101e80a1c3:
             targetId: a4cbb9a8-14df-7a01-6c81-7bbb69fefa49
             port: SUCCESS
     results:
       SUCCESS:
         a4cbb9a8-14df-7a01-6c81-7bbb69fefa49:
-          x: 250
-          'y': 325
+          x: 438
+          'y': 320
