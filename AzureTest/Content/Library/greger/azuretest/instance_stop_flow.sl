@@ -53,5 +53,5 @@ extensions:
     results:
       SUCCESS:
         ee712cd8-6f37-84a2-6454-5aa4419a0831:
-          x: 546
-          'y': 179
+          x: 547
+          'y': 187
