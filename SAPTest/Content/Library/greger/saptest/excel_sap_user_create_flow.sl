@@ -5,7 +5,7 @@ flow:
     - get_cell:
         do:
           io.cloudslang.base.excel.get_cell:
-            - excel_file_name: "C:\\RPAInput\\saptest.xlsx"
+            - excel_file_name: "C:\\RPAInput\\saptest_1.xlsx"
             - worksheet_name: Comedian
             - has_header: 'yes'
             - first_row_index: '0'
