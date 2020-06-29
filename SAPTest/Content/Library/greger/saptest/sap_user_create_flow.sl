@@ -7,10 +7,11 @@ namespace: greger.saptest
 flow:
   name: sap_user_create_flow
   inputs:
-    - user: KGTEST
+    - user: OETEST
     - password:
+        default: Cloud@123
         sensitive: true
-    - firstname: KG
+    - firstname: OE
     - lastname: TEST
     - email: kgtest@gmail.com
   workflow:

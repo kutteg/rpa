@@ -1,6 +1,6 @@
 namespace: greger.saptest
 flow:
-  name: excel_sap_users_create_flow
+  name: excel_sap_users_delete_flow
   workflow:
     - get_cell:
         do:
@@ -24,17 +24,13 @@ flow:
         publish:
           - userdata: '${result_string}'
         navigate:
-          - HAS_MORE: sap_user_create_action
+          - HAS_MORE: sap_user_delete_action
           - NO_MORE: SUCCESS
           - FAILURE: on_failure
-    - sap_user_create_action:
+    - sap_user_delete_action:
         do:
-          greger.saptest.sap_user_create_action:
+          greger.saptest.sap_user_delete_action:
             - user: "${userdata.split('|')[0]}"
-            - password: "${userdata.split('|')[3]}"
-            - firstname: "${userdata.split('|')[1]}"
-            - lastname: "${userdata.split('|')[2]}"
-            - email: "${userdata.split('|')[4]}"
         navigate:
           - SUCCESS: row_iterator
           - WARNING: row_iterator
@@ -55,9 +51,9 @@ extensions:
           3ca398ab-8157-d609-d511-867e94fb0b57:
             targetId: 5dd67d63-95ba-15c2-52d6-e6cfd1df07c8
             port: NO_MORE
-      sap_user_create_action:
-        x: 358
-        'y': 337
+      sap_user_delete_action:
+        x: 361
+        'y': 363
     results:
       SUCCESS:
         5dd67d63-95ba-15c2-52d6-e6cfd1df07c8:
