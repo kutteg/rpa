@@ -19,13 +19,13 @@ extensions:
   graph:
     steps:
       calc_action:
-        x: 149
-        'y': 150
+        x: 162.02357482910156
+        'y': 140.01885986328125
         navigate:
-          f149de03-9247-ca29-a3e2-209eeb7492b2:
+          07f933be-3049-599b-e3e2-193b8d77a3b6:
             targetId: db73f396-793b-9d93-a08a-73df4176588b
             port: SUCCESS
-          c97f34ee-e248-8135-2e32-25260d6947c2:
+          c343e1be-ce62-e94f-89ac-44d35cbf1322:
             targetId: db73f396-793b-9d93-a08a-73df4176588b
             port: WARNING
     results:

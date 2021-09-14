@@ -9,12 +9,12 @@ flow:
             - auth_type: basic
             - username: greger
             - password:
-                value: Cloud@123
+                value: Cloud_123
                 sensitive: true
             - trust_all_roots: 'true'
             - body: |-
                 {
-                  "scenarioId": 2,
+                  "scenarioId": 1,
                   "scenarioInputsValue": {},
                   "triggerName": "Excel_Data_from_RPA"
                 }

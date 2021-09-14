@@ -24,13 +24,9 @@ operation:
         remember_password: false
       windows:
         active: false
-        apps:
-          app_1:
-            args: ''
-            path: "C:\\Windows\\system32\\calc.exe"
-            directory: ''
       terminal_settings:
-        active: false
+        active: true
+        current_emulator: Rumba 9.5
       web:
         active: false
         close_on_exit: false
@@ -45,30 +41,44 @@ operation:
           object_path: 'Window("Calculator").WinComboBox("Select the type of unit")'
           action: Select
           default_args: '"Temperature"'
-          snapshot: ".\\Snapshots\\ssf2.png"
-          highlight_id: '2688112'
+          snapshot: ".\\Snapshots\\ssf1.png"
+          highlight_id: '1836500'
       - step:
           id: '4'
-          object_path: 'Window("Calculator").WinComboBox("To")'
+          object_path: 'Window("Calculator").WinComboBox("ComboBox")'
+          action: Select
+          default_args: '"Degrees Celsius"'
+          snapshot: ".\\Snapshots\\ssf2.png"
+          highlight_id: '1245304'
+      - step:
+          id: '5'
+          object_path: 'Window("Calculator").WinComboBox("ComboBox_2")'
           action: Select
           default_args: '"Degrees Fahrenheit"'
           snapshot: ".\\Snapshots\\ssf3.png"
-          highlight_id: '2491960'
-      - step:
-          id: '5'
-          object_path: 'Window("Calculator").WinEdit("From")'
-          action: Set
-          default_args: '"15"'
-          snapshot: ".\\Snapshots\\ssf4.png"
-          highlight_id: '3016190'
-          args: 'Parameter("celsius")'
+          highlight_id: '1704684'
       - step:
           id: '6'
+          object_path: 'Window("Calculator").WinEdit("From")'
+          action: Type
+          default_args: '"2"'
+          snapshot: ".\\Snapshots\\ssf4.png"
+          highlight_id: '1048684'
+          args: 'Parameter("celsius")'
+      - step:
+          id: '7'
           object_path: 'Window("Calculator").WinEdit("To")'
           action: Output
           default_args: 'CheckPoint("fahrenheit")'
       - step:
-          id: '7'
+          id: '8'
+          object_path: 'Window("Calculator").WinComboBox("Select the type of unit")'
+          action: Select
+          default_args: '"Angle"'
+          snapshot: ".\\Snapshots\\ssf5.png"
+          highlight_id: '1836500'
+      - step:
+          id: '9'
           object_path: 'Window("Calculator").WinMenu("Menu")'
           action: Select
           default_args: "\"View;Basic\tCtrl+F4\""
@@ -105,7 +115,7 @@ object_repository:
               custom_replay: ''
               class: WinMenu
               visual_relations: ''
-              last_update_time: 'Mittwoch, 20. Mai 2020 16:43:25'
+              last_update_time: 'Dienstag, 14. September 2021 14:29:46'
               basic_identification:
                 property_ref:
                   - menuobjtype
@@ -139,7 +149,7 @@ object_repository:
                   type: STRING
               class: WinEdit
               visual_relations: ''
-              last_update_time: 'Mittwoch, 20. Mai 2020 16:43:25'
+              last_update_time: 'Dienstag, 14. September 2021 14:29:46'
               basic_identification:
                 property_ref:
                   - nativeclass
@@ -174,42 +184,7 @@ object_repository:
                   type: STRING
               class: WinEdit
               visual_relations: ''
-              last_update_time: 'Mittwoch, 20. Mai 2020 16:43:25'
-              basic_identification:
-                property_ref:
-                  - nativeclass
-                  - attached text
-                ordinal_identifier: ''
-          - object:
-              smart_identification: ''
-              name: To
-              child_objects: []
-              properties:
-                - property:
-                    value:
-                      value: ComboBox
-                      regular_expression: false
-                    name: nativeclass
-                    hidden: false
-                    read_only: false
-                    type: STRING
-                - property:
-                    value:
-                      value: To
-                      regular_expression: false
-                    name: attached text
-                    hidden: false
-                    read_only: false
-                    type: STRING
-              comments: ''
-              custom_replay:
-                behavior:
-                  value: ComboBox
-                  name: simclass
-                  type: STRING
-              class: WinComboBox
-              visual_relations: ''
-              last_update_time: 'Mittwoch, 20. Mai 2020 16:43:25'
+              last_update_time: 'Dienstag, 14. September 2021 14:29:46'
               basic_identification:
                 property_ref:
                   - nativeclass
@@ -244,11 +219,81 @@ object_repository:
                   type: STRING
               class: WinComboBox
               visual_relations: ''
-              last_update_time: 'Mittwoch, 20. Mai 2020 16:43:25'
+              last_update_time: 'Dienstag, 14. September 2021 14:29:46'
               basic_identification:
                 property_ref:
                   - nativeclass
                   - attached text
+                ordinal_identifier: ''
+          - object:
+              smart_identification: ''
+              name: ComboBox_2
+              child_objects: []
+              properties:
+                - property:
+                    value:
+                      value: '225'
+                      regular_expression: false
+                    name: window id
+                    hidden: false
+                    read_only: false
+                    type: NUMBER
+                - property:
+                    value:
+                      value: ComboBox
+                      regular_expression: false
+                    name: nativeclass
+                    hidden: false
+                    read_only: false
+                    type: STRING
+              comments: ''
+              custom_replay:
+                behavior:
+                  value: ComboBox
+                  name: simclass
+                  type: STRING
+              class: WinComboBox
+              visual_relations: ''
+              last_update_time: 'Dienstag, 14. September 2021 14:29:46'
+              basic_identification:
+                property_ref:
+                  - window id
+                  - nativeclass
+                ordinal_identifier: ''
+          - object:
+              smart_identification: ''
+              name: ComboBox
+              child_objects: []
+              properties:
+                - property:
+                    value:
+                      value: '224'
+                      regular_expression: false
+                    name: window id
+                    hidden: false
+                    read_only: false
+                    type: NUMBER
+                - property:
+                    value:
+                      value: ComboBox
+                      regular_expression: false
+                    name: nativeclass
+                    hidden: false
+                    read_only: false
+                    type: STRING
+              comments: ''
+              custom_replay:
+                behavior:
+                  value: ComboBox
+                  name: simclass
+                  type: STRING
+              class: WinComboBox
+              visual_relations: ''
+              last_update_time: 'Dienstag, 14. September 2021 14:29:46'
+              basic_identification:
+                property_ref:
+                  - window id
+                  - nativeclass
                 ordinal_identifier: ''
         properties:
           - property:
@@ -291,7 +336,7 @@ object_repository:
             type: STRING
         class: Window
         visual_relations: ''
-        last_update_time: 'Mittwoch, 20. Mai 2020 16:43:25'
+        last_update_time: 'Dienstag, 14. September 2021 14:29:46'
         basic_identification:
           property_ref:
             - regexpwndtitle
@@ -306,7 +351,7 @@ object_repository:
             - value: ''
               visual_relations: ''
               parameter:
-                value: fahrenheit
+                value: '"fahrenheit"'
                 regular_expression: false
                 ignore_space: false
                 match_case: false

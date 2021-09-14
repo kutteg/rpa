@@ -9,7 +9,7 @@ flow:
             - auth_type: basic
             - username: greger
             - password:
-                value: Cloud@123
+                value: Cloud_123
                 sensitive: true
             - trust_all_roots: 'true'
             - x_509_hostname_verifier: allow_all
