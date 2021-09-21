@@ -6,6 +6,10 @@ flow:
         do:
           io.cloudslang.microsoft.office365.get_email:
             - tenant: rpamf.onmicrosoft.com
+            - username: daniel@rpamf.onmicrosoft.com
+            - password:
+                value: mypasswd
+                sensitive: true
             - client_id: 4c800826-f5c8-44a1-b779-2f333099823d
             - client_secret:
                 value: 'JHAH]Yqe3*97FA0kb+]lO0X5][5iNw_]'

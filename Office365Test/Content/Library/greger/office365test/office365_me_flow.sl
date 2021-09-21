@@ -6,10 +6,12 @@ flow:
         do:
           io.cloudslang.microsoft.office365.get_email:
             - tenant: greger.onmicrosoft.com
-            - client_id: d9de640a-b508-41b1-9309-bc8e95ddb486
-            - client_secret:
-                value: 'RCHbYjo@x9C[gjH0i//7BEACjj0jF*SP'
+            - login_type: Native
+            - username: hcm@greger.onmicrosoft.com
+            - password:
+                value: kutte@123
                 sensitive: true
+            - client_id: d9de640a-b508-41b1-9309-bc8e95ddb486
             - email_address: hcm@greger.onmicrosoft.com
             - proxy_host: web-proxy.eu.softwaregrp.net
             - proxy_port: '8080'

@@ -1,21 +1,23 @@
 namespace: greger.mailtest
 flow:
-  name: mail_flow
+  name: send_mail_flow
   workflow:
     - send_mail:
         do:
           io.cloudslang.base.mail.send_mail:
-            - hostname: mx.freenet.de
-            - port: '465'
+            - hostname: smtp.googlemail.com
+            - port: '25'
             - from: kurt.greger@microfocus.com
-            - to: k.greger@freenet.de
+            - to: kutte.g@googlemail.com
             - subject: mailtest mit RPA
             - body: dies war ein RPA mail test
-            - username: k.greger
+            - username: kutte.g
             - password:
-                value: 4tanjaFT
+                value: msatmwbxfilrclhe
                 sensitive: true
-            - enable_TLS: 'false'
+            - enable_TLS: 'true'
+            - proxy_host: web-proxy.eu.softwaregrp.net
+            - proxy_port: '8080'
         navigate:
           - SUCCESS: SUCCESS
           - FAILURE: on_failure
