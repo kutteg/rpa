@@ -13,7 +13,7 @@ flow:
             - body: dies war ein RPA mail test
             - username: kutte.g
             - password:
-                value: msatmwbxfilrclhe
+                value: bsqklzvetrrmhbrn
                 sensitive: true
             - enable_TLS: 'true'
             - proxy_host: web-proxy.eu.softwaregrp.net

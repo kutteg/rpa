@@ -1,4 +1,4 @@
-namespace: greger.mailtest
+namespace: greger.jlotest
 flow:
   name: get_mail_flow
   inputs:
