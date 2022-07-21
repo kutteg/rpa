@@ -23,9 +23,18 @@ operation:
         ignore_existing_sessions: false
         remember_password: false
       windows:
-        active: false
-      terminal_settings:
         active: true
+        apps:
+          app_1:
+            args: ''
+            path: ''
+            directory: ''
+          app_2:
+            args: ''
+            path: "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories\\Calculator"
+            directory: ''
+      terminal_settings:
+        active: false
         current_emulator: Rumba 9.5
       web:
         active: false
