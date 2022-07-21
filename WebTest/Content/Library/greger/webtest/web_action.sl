@@ -30,6 +30,7 @@ operation:
         active: true
         address: www.google.de
         close_on_exit: true
+        browser: IE
     steps:
       - step:
           id: '2'
