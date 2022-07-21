@@ -2,7 +2,7 @@ namespace: greger.webtest
 operation:
   name: web_action
   inputs:
-    - search
+    - suchtext
   sequential_action:
     gav: 'com.microfocus.seq:greger.webtest.web_action:1.0.0'
     skills:
@@ -26,29 +26,41 @@ operation:
         active: false
       terminal_settings:
         active: false
+        current_emulator: Rumba 9.5
       web:
         active: true
-        address: www.google.de
         close_on_exit: true
-        browser: IE
     steps:
       - step:
+          id: '1'
+          object_path: 'Browser("Google").Page("Google")'
+          action: Sync
+          snapshot: ".\\Snapshots\\ssf1.html"
+          highlight_id: 'Browser("Google").Page("Google")'
+      - step:
           id: '2'
-          object_path: 'Browser("Google").Page("Google").WebEdit("Suche")'
-          action: Set
-          default_args: '"Raspberry Pi 4"'
-          snapshot: ".\\Snapshots\\ssf2.html"
-          highlight_id: 'Browser("Google").Page("Google").WebEdit("Suche")'
-          args: 'Parameter("search")'
+          object_path: 'Browser("Google")'
+          action: Navigate
+          default_args: '"https://www.bing.com/"'
+          snapshot: ".\\Snapshots\\ssf2.png"
+          highlight_id: '2490492'
       - step:
           id: '3'
-          object_path: 'Browser("Google").Page("Google").WebButton("Google-Suche")'
-          action: Click
+          object_path: 'Browser("Google").Page("Search").WebEdit("Enter your search term")'
+          action: Set
+          default_args: '"Micro Focus RPA"'
           snapshot: ".\\Snapshots\\ssf3.html"
-          highlight_id: 'Browser("Google").Page("Google").WebButton("Google-Suche")'
+          highlight_id: 'Browser("Google").Page("Search").WebEdit("Enter your search term")'
+          args: 'Parameter("suchtext")'
       - step:
           id: '4'
-          object_path: 'Browser("Google").Page("Raspberry Pi 4 - Google-Suche").WebElement("result-stats")'
+          object_path: 'Browser("Google").Page("Search").WebButton("Search")'
+          action: Click
+          snapshot: ".\\Snapshots\\ssf4.html"
+          highlight_id: 'Browser("Google").Page("Search").WebButton("Search")'
+      - step:
+          id: '5'
+          object_path: 'Browser("Google").Page("Micro Focus RPA - Search").WebElement("52,700 results")'
           action: Output
           default_args: 'CheckPoint("result")'
   outputs:
@@ -94,224 +106,7 @@ object_repository:
                     - url
                 algorithm: Mercury.TolerantPriority
                 active: true
-              name: Raspberry Pi 4 - Google-Suche
-              child_objects:
-                - object:
-                    smart_identification:
-                      base_filter:
-                        property_ref:
-                          - micclass
-                          - html tag
-                      optional_filter:
-                        property_ref:
-                          - html id
-                          - class
-                          - innertext
-                          - visible
-                          - acc_name
-                      algorithm: Mercury.TolerantPriority
-                      active: true
-                    name: result-stats
-                    child_objects: []
-                    properties:
-                      - property:
-                          value:
-                            value: '-1'
-                            regular_expression: false
-                          name: visible
-                          hidden: true
-                          read_only: true
-                          type: BOOL
-                      - property:
-                          value:
-                            value: WebElement
-                            regular_expression: false
-                          name: micclass
-                          hidden: true
-                          read_only: true
-                          type: STRING
-                      - property:
-                          value:
-                            value: 'Ungefähr 176.000.000 Ergebnisse (0,39 Sekunden)'
-                            regular_expression: false
-                          name: innertext
-                          hidden: false
-                          read_only: false
-                          type: STRING
-                      - property:
-                          value:
-                            value: DIV
-                            regular_expression: false
-                          name: html tag
-                          hidden: false
-                          read_only: false
-                          type: STRING
-                      - property:
-                          value:
-                            value: result-stats
-                            regular_expression: false
-                          name: html id
-                          hidden: true
-                          read_only: true
-                          type: STRING
-                      - property:
-                          value:
-                            value: ''
-                            regular_expression: false
-                          name: class
-                          hidden: false
-                          read_only: false
-                          type: STRING
-                      - property:
-                          value:
-                            value: ''
-                            regular_expression: false
-                          name: acc_name
-                          hidden: false
-                          read_only: false
-                          type: STRING
-                      - property:
-                          value:
-                            value: '//DIV[@id="result-stats"]'
-                            regular_expression: false
-                          name: _xpath
-                          hidden: true
-                          read_only: true
-                          type: STRING
-                    comments: ''
-                    custom_replay: ''
-                    class: WebElement
-                    visual_relations: ''
-                    last_update_time: 'Mittwoch, 20. Mai 2020 15:52:37'
-                    basic_identification:
-                      property_ref:
-                        - micclass
-                        - innertext
-                        - html tag
-                        - class
-                        - acc_name
-                        - _xpath
-                      ordinal_identifier:
-                        value: 3
-                        type: index
-              properties:
-                - property:
-                    value:
-                      value: ''
-                      regular_expression: false
-                    name: user-input in post data
-                    hidden: true
-                    read_only: true
-                    type: STRING
-                - property:
-                    value:
-                      value: '&q=Raspberry+Pi+4'
-                      regular_expression: false
-                    name: user input in get data
-                    hidden: true
-                    read_only: true
-                    type: STRING
-                - property:
-                    value:
-                      value: 'https://www.google.de/search'
-                      regular_expression: false
-                    name: url without form data
-                    hidden: true
-                    read_only: true
-                    type: STRING
-                - property:
-                    value:
-                      value: 'https://www.google.de/search?source=hp&ei=8TXFXpHBFYWejLsPrcWN-As&q=Raspberry+Pi+4&oq=Raspberry+Pi+4&gs_lcp=CgZwc3ktYWIQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BQgAEIMBOgQIABADUI0_WItlYK6DAWgBcAB4AIAB0QGIAfoIkgEGMTMuMC4xmAEAoAEBqgEHZ3dzLXdperABAA&sclient=psy-ab&ved=0ahUKEwjR_eeSy8LpAhUFD2MBHa1iA78Q4dUDCAo&uact=5#spf=1589982723663'
-                      regular_expression: false
-                    name: url
-                    hidden: true
-                    read_only: true
-                    type: STRING
-                - property:
-                    value:
-                      value: Raspberry Pi 4 - Google-Suche
-                      regular_expression: false
-                    name: title
-                    hidden: true
-                    read_only: true
-                    type: STRING
-                - property:
-                    value:
-                      value: ''
-                      regular_expression: false
-                    name: non user-input in post data
-                    hidden: true
-                    read_only: true
-                    type: STRING
-                - property:
-                    value:
-                      value: '&source=hp&ei=8TXFXpHBFYWejLsPrcWN-As&oq=Raspberry+Pi+4&gs_lcp=CgZwc3ktYWIQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BQgAEIMBOgQIABADUI0_WItlYK6DAWgBcAB4AIAB0QGIAfoIkgEGMTMuMC4xmAEAoAEBqgEHZ3dzLXdperABAA&sclient=psy-ab&ved=0ahUKEwjR_eeSy8LpAhUFD2MBHa1iA78Q4dUDCAo&uact=5#spf=1589982723663'
-                      regular_expression: false
-                    name: non user-input in get data
-                    hidden: true
-                    read_only: true
-                    type: STRING
-                - property:
-                    value:
-                      value: Page
-                      regular_expression: false
-                    name: micclass
-                    hidden: true
-                    read_only: true
-                    type: STRING
-                - property:
-                    value:
-                      value: '20030'
-                      regular_expression: false
-                    name: index
-                    hidden: true
-                    read_only: true
-                    type: NUMBER
-                - property:
-                    value:
-                      value: ''
-                      regular_expression: false
-                    name: form data
-                    hidden: true
-                    read_only: true
-                    type: STRING
-                - property:
-                    value:
-                      value: '351962'
-                      regular_expression: false
-                    name: document size
-                    hidden: true
-                    read_only: true
-                    type: NUMBER
-                - property:
-                    value:
-                      value: 'source=hp&ei=8TXFXpHBFYWejLsPrcWN-As&q=Raspberry+Pi+4&oq=Raspberry+Pi+4&gs_lcp=CgZwc3ktYWIQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BQgAEIMBOgQIABADUI0_WItlYK6DAWgBcAB4AIAB0QGIAfoIkgEGMTMuMC4xmAEAoAEBqgEHZ3dzLXdperABAA&sclient=psy-ab&ved=0ahUKEwjR_eeSy8LpAhUFD2MBHa1iA78Q4dUDCAo&uact=5#spf=1589982723663'
-                      regular_expression: false
-                    name: all data in get method
-                    hidden: true
-                    read_only: true
-                    type: STRING
-              comments: ''
-              custom_replay: ''
-              class: Page
-              visual_relations: ''
-              last_update_time: 'Mittwoch, 20. Mai 2020 15:52:37'
-              basic_identification:
-                property_ref:
-                  - micclass
-                ordinal_identifier: ''
-          - object:
-              smart_identification:
-                base_filter:
-                  property_ref:
-                    - micclass
-                optional_filter:
-                  property_ref:
-                    - title
-                    - url
-                algorithm: Mercury.TolerantPriority
-                active: true
-              name: Google
+              name: Search
               child_objects:
                 - object:
                     smart_identification:
@@ -332,7 +127,7 @@ object_repository:
                           - acc_name
                       algorithm: Mercury.TolerantPriority
                       active: true
-                    name: Suche
+                    name: Enter your search term
                     child_objects: []
                     properties:
                       - property:
@@ -345,7 +140,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: '//FORM[@id="tsf"]/DIV[2]/DIV[1]/DIV[1]/DIV[1]/DIV[2]/INPUT[@role="combobox"][1]'
+                            value: '//INPUT[@id="sb_form_q"]'
                             regular_expression: false
                           name: _xpath
                           hidden: true
@@ -353,7 +148,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: text
+                            value: search
                             regular_expression: false
                           name: type
                           hidden: false
@@ -361,7 +156,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: '80'
+                            value: '170'
                             regular_expression: false
                           name: source_index
                           hidden: true
@@ -393,7 +188,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: '2048'
+                            value: '1000'
                             regular_expression: false
                           name: max length
                           hidden: true
@@ -409,7 +204,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: ''
+                            value: sb_form_q
                             regular_expression: false
                           name: html id
                           hidden: true
@@ -417,7 +212,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: ''
+                            value: micro focus rpa
                             regular_expression: false
                           name: default value
                           hidden: true
@@ -425,7 +220,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: gLFyf gsfi
+                            value: sb_form_q
                             regular_expression: false
                           name: class
                           hidden: true
@@ -433,7 +228,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: Suche
+                            value: Enter your search term
                             regular_expression: false
                           name: acc_name
                           hidden: true
@@ -443,7 +238,7 @@ object_repository:
                     custom_replay: ''
                     class: WebEdit
                     visual_relations: ''
-                    last_update_time: 'Mittwoch, 20. Mai 2020 15:52:37'
+                    last_update_time: 'Donnerstag, 21. Juli 2022 11:02:43'
                     basic_identification:
                       property_ref:
                         - micclass
@@ -469,7 +264,7 @@ object_repository:
                           - acc_name
                       algorithm: Mercury.TolerantPriority
                       active: true
-                    name: Google-Suche
+                    name: Search
                     child_objects: []
                     properties:
                       - property:
@@ -482,7 +277,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: '//FORM[@id="tsf"]/DIV[2]/DIV[1]/DIV[3]/CENTER[1]/INPUT[1]'
+                            value: '//INPUT[@id="sb_form_go"]'
                             regular_expression: false
                           name: _xpath
                           hidden: true
@@ -498,7 +293,7 @@ object_repository:
                           type: BOOL
                       - property:
                           value:
-                            value: Google-Suche
+                            value: ''
                             regular_expression: false
                           name: value
                           hidden: true
@@ -514,15 +309,15 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: ''
+                            value: '239'
                             regular_expression: false
-                          name: role
-                          hidden: false
-                          read_only: false
-                          type: STRING
+                          name: source_index
+                          hidden: true
+                          read_only: true
+                          type: NUMBER
                       - property:
                           value:
-                            value: Google-Suche
+                            value: search
                             regular_expression: false
                           name: name
                           hidden: false
@@ -538,7 +333,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: ''
+                            value: sb_form_go
                             regular_expression: false
                           name: html id
                           hidden: true
@@ -546,7 +341,7 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: gNO89b
+                            value: ''
                             regular_expression: false
                           name: class
                           hidden: true
@@ -554,29 +349,25 @@ object_repository:
                           type: STRING
                       - property:
                           value:
-                            value: Google-Suche
+                            value: Search
                             regular_expression: false
                           name: acc_name
-                          hidden: false
-                          read_only: false
+                          hidden: true
+                          read_only: true
                           type: STRING
                     comments: ''
                     custom_replay: ''
                     class: WebButton
                     visual_relations: ''
-                    last_update_time: 'Mittwoch, 20. Mai 2020 15:52:37'
+                    last_update_time: 'Donnerstag, 21. Juli 2022 11:02:43'
                     basic_identification:
                       property_ref:
                         - micclass
                         - _xpath
                         - type
-                        - role
                         - name
                         - html tag
-                        - acc_name
-                      ordinal_identifier:
-                        value: 1
-                        type: index
+                      ordinal_identifier: ''
               properties:
                 - property:
                     value:
@@ -588,7 +379,7 @@ object_repository:
                     type: STRING
                 - property:
                     value:
-                      value: '&'
+                      value: ''
                       regular_expression: false
                     name: user input in get data
                     hidden: true
@@ -596,7 +387,7 @@ object_repository:
                     type: STRING
                 - property:
                     value:
-                      value: 'https://www.google.de/'
+                      value: 'https://www.bing.com'
                       regular_expression: false
                     name: url without form data
                     hidden: true
@@ -604,7 +395,347 @@ object_repository:
                     type: STRING
                 - property:
                     value:
-                      value: 'https://www.google.de/?gws_rd=ssl#spf=1589982705730'
+                      value: 'https://www.bing.com'
+                      regular_expression: false
+                    name: url
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: Search
+                      regular_expression: false
+                    name: title
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: ''
+                      regular_expression: false
+                    name: non user-input in post data
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: ''
+                      regular_expression: false
+                    name: non user-input in get data
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: Page
+                      regular_expression: false
+                    name: micclass
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: '20008'
+                      regular_expression: false
+                    name: index
+                    hidden: true
+                    read_only: true
+                    type: NUMBER
+                - property:
+                    value:
+                      value: ''
+                      regular_expression: false
+                    name: form data
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: '88639'
+                      regular_expression: false
+                    name: document size
+                    hidden: true
+                    read_only: true
+                    type: NUMBER
+                - property:
+                    value:
+                      value: ''
+                      regular_expression: false
+                    name: all data in get method
+                    hidden: true
+                    read_only: true
+                    type: STRING
+              comments: ''
+              custom_replay: ''
+              class: Page
+              visual_relations: ''
+              last_update_time: 'Donnerstag, 21. Juli 2022 11:02:43'
+              basic_identification:
+                property_ref:
+                  - micclass
+                ordinal_identifier: ''
+          - object:
+              smart_identification:
+                base_filter:
+                  property_ref:
+                    - micclass
+                optional_filter:
+                  property_ref:
+                    - title
+                    - url
+                algorithm: Mercury.TolerantPriority
+                active: true
+              name: Micro Focus RPA - Search
+              child_objects:
+                - object:
+                    smart_identification:
+                      base_filter:
+                        property_ref:
+                          - micclass
+                          - html tag
+                      optional_filter:
+                        property_ref:
+                          - html id
+                          - class
+                          - innertext
+                          - visible
+                          - acc_name
+                      algorithm: Mercury.TolerantPriority
+                      active: true
+                    name: '52,700 results'
+                    child_objects: []
+                    properties:
+                      - property:
+                          value:
+                            value: '-1'
+                            regular_expression: false
+                          name: visible
+                          hidden: true
+                          read_only: true
+                          type: BOOL
+                      - property:
+                          value:
+                            value: '155'
+                            regular_expression: false
+                          name: source_index
+                          hidden: true
+                          read_only: true
+                          type: NUMBER
+                      - property:
+                          value:
+                            value: WebElement
+                            regular_expression: false
+                          name: micclass
+                          hidden: true
+                          read_only: true
+                          type: STRING
+                      - property:
+                          value:
+                            value: '52,700 results'
+                            regular_expression: false
+                          name: innertext
+                          hidden: false
+                          read_only: false
+                          type: STRING
+                      - property:
+                          value:
+                            value: SPAN
+                            regular_expression: false
+                          name: html tag
+                          hidden: false
+                          read_only: false
+                          type: STRING
+                      - property:
+                          value:
+                            value: ''
+                            regular_expression: false
+                          name: html id
+                          hidden: true
+                          read_only: true
+                          type: STRING
+                      - property:
+                          value:
+                            value: sb_count
+                            regular_expression: false
+                          name: class
+                          hidden: true
+                          read_only: true
+                          type: STRING
+                      - property:
+                          value:
+                            value: ''
+                            regular_expression: false
+                          name: acc_name
+                          hidden: true
+                          read_only: true
+                          type: STRING
+                      - property:
+                          value:
+                            value: '//DIV[@id="b_tween"]/SPAN[1]'
+                            regular_expression: false
+                          name: _xpath
+                          hidden: true
+                          read_only: true
+                          type: STRING
+                    comments: ''
+                    custom_replay: ''
+                    class: WebElement
+                    visual_relations: ''
+                    last_update_time: 'Donnerstag, 21. Juli 2022 11:02:43'
+                    basic_identification:
+                      property_ref:
+                        - micclass
+                        - innertext
+                        - html tag
+                        - _xpath
+                      ordinal_identifier: ''
+              properties:
+                - property:
+                    value:
+                      value: ''
+                      regular_expression: false
+                    name: user-input in post data
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: '&q=Micro+Focus+RPA'
+                      regular_expression: false
+                    name: user input in get data
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: 'https://www.bing.com/search'
+                      regular_expression: false
+                    name: url without form data
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: 'https://www.bing.com/search?q=Micro+Focus+RPA&form=QBLH&sp=-1&pq=micro+focus+rpa&sc=8-15&qs=n&sk=&cvid=4C93D1901C56454A80132F22F4E706AF&ghsh=0&ghacc=0&ghpl='
+                      regular_expression: false
+                    name: url
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: Micro Focus RPA - Search
+                      regular_expression: false
+                    name: title
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: ''
+                      regular_expression: false
+                    name: non user-input in post data
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: '&form=QBLH&sp=-1&pq=micro+focus+rpa&sc=8-15&qs=n&sk=&cvid=4C93D1901C56454A80132F22F4E706AF&ghsh=0&ghacc=0&ghpl='
+                      regular_expression: false
+                    name: non user-input in get data
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: Page
+                      regular_expression: false
+                    name: micclass
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: '20009'
+                      regular_expression: false
+                    name: index
+                    hidden: true
+                    read_only: true
+                    type: NUMBER
+                - property:
+                    value:
+                      value: ''
+                      regular_expression: false
+                    name: form data
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: '619601'
+                      regular_expression: false
+                    name: document size
+                    hidden: true
+                    read_only: true
+                    type: NUMBER
+                - property:
+                    value:
+                      value: 'q=Micro+Focus+RPA&form=QBLH&sp=-1&pq=micro+focus+rpa&sc=8-15&qs=n&sk=&cvid=4C93D1901C56454A80132F22F4E706AF&ghsh=0&ghacc=0&ghpl='
+                      regular_expression: false
+                    name: all data in get method
+                    hidden: true
+                    read_only: true
+                    type: STRING
+              comments: ''
+              custom_replay: ''
+              class: Page
+              visual_relations: ''
+              last_update_time: 'Donnerstag, 21. Juli 2022 11:02:43'
+              basic_identification:
+                property_ref:
+                  - micclass
+                ordinal_identifier: ''
+          - object:
+              smart_identification:
+                base_filter:
+                  property_ref:
+                    - micclass
+                optional_filter:
+                  property_ref:
+                    - title
+                    - url
+                algorithm: Mercury.TolerantPriority
+                active: true
+              name: Google
+              child_objects: []
+              properties:
+                - property:
+                    value:
+                      value: ''
+                      regular_expression: false
+                    name: user-input in post data
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: ''
+                      regular_expression: false
+                    name: user input in get data
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: 'https://www.google.de'
+                      regular_expression: false
+                    name: url without form data
+                    hidden: true
+                    read_only: true
+                    type: STRING
+                - property:
+                    value:
+                      value: 'https://www.google.de'
                       regular_expression: false
                     name: url
                     hidden: true
@@ -628,7 +759,7 @@ object_repository:
                     type: STRING
                 - property:
                     value:
-                      value: '&gws_rd=ssl#spf=1589982705730'
+                      value: ''
                       regular_expression: false
                     name: non user-input in get data
                     hidden: true
@@ -644,7 +775,7 @@ object_repository:
                     type: STRING
                 - property:
                     value:
-                      value: '20026'
+                      value: '20007'
                       regular_expression: false
                     name: index
                     hidden: true
@@ -660,7 +791,7 @@ object_repository:
                     type: STRING
                 - property:
                     value:
-                      value: '202415'
+                      value: '145231'
                       regular_expression: false
                     name: document size
                     hidden: true
@@ -668,7 +799,7 @@ object_repository:
                     type: NUMBER
                 - property:
                     value:
-                      value: 'gws_rd=ssl#spf=1589982705730'
+                      value: ''
                       regular_expression: false
                     name: all data in get method
                     hidden: true
@@ -678,7 +809,7 @@ object_repository:
               custom_replay: ''
               class: Page
               visual_relations: ''
-              last_update_time: 'Mittwoch, 20. Mai 2020 15:52:37'
+              last_update_time: 'Donnerstag, 21. Juli 2022 11:02:43'
               basic_identification:
                 property_ref:
                   - micclass
@@ -694,7 +825,7 @@ object_repository:
               type: STRING
           - property:
               value:
-                value: 'https://www.google.de/?gws_rd=ssl'
+                value: 'https://www.google.de'
                 regular_expression: false
               name: openurl
               hidden: true
@@ -710,7 +841,7 @@ object_repository:
               type: STRING
           - property:
               value:
-                value: '-1'
+                value: '0'
                 regular_expression: false
               name: openedbytestingtool
               hidden: true
@@ -718,7 +849,7 @@ object_repository:
               type: BOOL
           - property:
               value:
-                value: '2'
+                value: '1'
                 regular_expression: false
               name: number of tabs
               hidden: true
@@ -776,12 +907,12 @@ object_repository:
         custom_replay: ''
         class: Browser
         visual_relations: ''
-        last_update_time: 'Mittwoch, 20. Mai 2020 15:52:37'
+        last_update_time: 'Donnerstag, 21. Juli 2022 11:02:43'
         basic_identification:
           property_ref:
             - micclass
           ordinal_identifier:
-            value: 6
+            value: 9
             type: creationtime
   check_points_and_outputs:
     - check_point_and_output:
@@ -868,7 +999,7 @@ object_repository:
             - value: ''
               visual_relations: ''
               parameter:
-                value: result
+                value: '"result"'
                 regular_expression: false
                 ignore_space: false
                 match_case: false

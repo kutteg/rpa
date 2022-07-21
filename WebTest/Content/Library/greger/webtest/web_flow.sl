@@ -7,7 +7,7 @@ flow:
     - web_action:
         do:
           greger.webtest.web_action:
-            - search: '${suchtext}'
+            - suchtext: '${suchtext}'
         publish:
           - ergebnis: '${result}'
         navigate:
@@ -34,8 +34,8 @@ extensions:
   graph:
     steps:
       web_action:
-        x: 147
-        'y': 219
+        x: 129
+        'y': 218
       get_by_index:
         x: 364
         'y': 216
