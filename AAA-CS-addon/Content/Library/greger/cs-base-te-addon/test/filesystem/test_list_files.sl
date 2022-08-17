@@ -1,4 +1,4 @@
-namespace: io.cloudslang.base.filesystem.test
+namespace: greger.cs-base-te-addon.test.filesystem
 flow:
   name: test_list_files
   workflow:

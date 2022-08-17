@@ -1,4 +1,4 @@
-namespace: io.cloudslang.base.json.test
+namespace: greger.cs-base-te-addon.test.json
 flow:
   name: test_set_json_properties
   workflow:

@@ -1,4 +1,4 @@
-namespace: io.cloudslang.base.github._operations.test
+namespace: greger.cs-base-te-addon.test.github
 flow:
   name: test_github_http_action
   workflow:
