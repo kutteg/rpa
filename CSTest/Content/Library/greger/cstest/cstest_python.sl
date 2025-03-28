@@ -33,14 +33,14 @@ extensions:
         x: 100
         'y': 150
       cstest_python_operation:
-        x: 407.0247497558594
-        'y': 158.02476501464844
+        x: 400
+        'y': 150
         navigate:
-          5970e2fc-4717-79a3-1342-1e935a0208d3:
+          a94880fe-b7d7-d77d-e917-44dcaf733dd8:
             targetId: 0ef869ee-b8ed-236b-dc2a-0582832c1354
             port: SUCCESS
     results:
       SUCCESS:
         0ef869ee-b8ed-236b-dc2a-0582832c1354:
-          x: 692
-          'y': 147
+          x: 700
+          'y': 150
